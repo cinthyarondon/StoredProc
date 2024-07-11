@@ -6,7 +6,10 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// LoadEnv carga las variables del entorno desde el archivo .env
+/**
+* Carga las variables de entorno desde el archivo .env
+* @author Cinthya Rondon
+*/
 func LoadEnv() error {
 	err := godotenv.Load()
 	if err != nil {
@@ -15,7 +18,11 @@ func LoadEnv() error {
 	return nil
 }
 
-// GetPort obtiene el puerto del entorno o devuelve el valor por defecto
+/**
+* Obtiene el valor de una variable de entorno especifica, si está no tiene valor,
+* retorn el valor por defecto
+* @author Cinthya Rondon
+*/
 func GetPort() string {
 	port := os.Getenv("PORT")
 	if port == "" {

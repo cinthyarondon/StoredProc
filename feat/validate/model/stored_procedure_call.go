@@ -1,6 +1,9 @@
 package model
 
-// StoredProcedureCall estructura para almacenar la llamada al procedimiento almacenado
+/**
+* Representa un objecto de negocio
+* @author Cinthya Rondon
+*/
 type StoredProcedureCall struct {
 	ProcedureName string        `json:"ProcedureName"`
 	Inputs        []interface{} `json:"Inputs"`
