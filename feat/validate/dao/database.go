@@ -34,6 +34,11 @@ func (db *OracleDB) Connect() error {
 	dbPort := os.Getenv("DB_PORT")
 	dbService := os.Getenv("DB_SERVICE")
 
+    // Verificar que todas las variables de entorno estén presentes
+    if dbUser == "" || dbPassword == "" || dbHost == "" || dbPort == "" || dbService == "" {
+        return fmt.Errorf("faltan variables de entorno requeridas")
+    }
+
 	connStr := fmt.Sprintf(`user="%s" password="%s" connectString="%s:%s/%s"`, dbUser, dbPassword, dbHost, dbPort, dbService)
 	
 	fmt.Printf(connStr)

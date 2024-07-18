@@ -3,13 +3,15 @@ package config
 import (
 	"os"
 
-	"github.com/joho/godotenv"
+	//"github.com/joho/godotenv"
 )
 
 /**
 * Carga las variables de entorno desde el archivo .env
 * @author Cinthya Rondon
 */
+
+/*
 func LoadEnv() error {
 	err := godotenv.Load()
 	if err != nil {
@@ -17,6 +19,7 @@ func LoadEnv() error {
 	}
 	return nil
 }
+/*
 
 /**
 * Obtiene el valor de una variable de entorno especifica, si está no tiene valor,
