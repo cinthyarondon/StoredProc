@@ -1,13 +1,6 @@
 # Etapa de construcción
 FROM golang:1.22.5 AS builder
 
-# ENV DB_USER=system
-# ENV DB_PASSWORD=12345
-# ENV DB_HOST=localhost
-# ENV DB_PORT=1521
-# ENV DB_SERVICE=freepdb1
-# ENV PORT=8080
-
 # Instalar dependencias para Oracle Instant Client 
 RUN apt-get update && apt-get install -y libaio1 wget unzip
 

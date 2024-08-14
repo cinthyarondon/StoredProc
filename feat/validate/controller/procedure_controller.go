@@ -5,6 +5,7 @@ import (
     "net/http"
 	"strconv"
     "os"
+    "log"
 
     "main/common/dto"
     "main/feat/validate/application"
@@ -53,16 +54,23 @@ func (h *ProcedureController) HandleExecuteProcedure(w http.ResponseWriter, r *h
     var call model.StoredProcedureCall
     call.ProcedureName = procedureName
 
+    // Log for debugging
+    log.Println("Procedimiento:", procedureName)
+    log.Println("Inputs JSON:", inputsJSON)
+    log.Println("Outputs:", outputsStr)
+
     // Deserialización (convertir datos en un objeto de memoria) del campo Inputs
     // Convertir la cadena JSON en un slice de interfaces ([]interface{})
     err := json.Unmarshal([]byte(inputsJSON), &call.Inputs)
     if err != nil {
+        log.Printf("Error al decodificar Inputs: %v\nInputs JSON: %s\n", err, inputsJSON)
         http.Error(w, "Error al decodificar Inputs", http.StatusBadRequest)
         return
     }
 
     outputs, err := strconv.Atoi(outputsStr)
     if err != nil {
+        log.Printf("Error al convertir Outputs a entero: %v\n", err)
         http.Error(w, "Error al convertir Outputs a entero", http.StatusBadRequest)
         return
     }
@@ -86,6 +94,7 @@ func (h *ProcedureController) HandleExecuteProcedure(w http.ResponseWriter, r *h
     // Ejecutar el procedimiento almacenado usando el servicio
     result, err := h.service.ExecuteStoredProcedure(call)
     if err != nil {
+        log.Printf("Error ejecutando procedimiento: %v\n", err)
         http.Error(w, err.Error(), http.StatusInternalServerError)
         return
     }

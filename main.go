@@ -1,7 +1,6 @@
 package main
 
 import (
-	"os"
 	"log"
 	"net/http"
 
@@ -21,11 +20,13 @@ func main() {
 	*/
 
 	// Verifica las variables de entorno
+	/*
     log.Printf("DB_USER: %s", os.Getenv("DB_USER"))
     log.Printf("DB_PASSWORD: %s", os.Getenv("DB_PASSWORD"))
     log.Printf("DB_HOST: %s", os.Getenv("DB_HOST"))
     log.Printf("DB_PORT: %s", os.Getenv("DB_PORT"))
     log.Printf("DB_SERVICE: %s", os.Getenv("DB_SERVICE"))
+	*/
 
 	db := dao.NewOracleDB()
 	err := db.Connect()

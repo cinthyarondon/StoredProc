@@ -41,7 +41,7 @@ func (db *OracleDB) Connect() error {
 
 	connStr := fmt.Sprintf(`user="%s" password="%s" connectString="%s:%s/%s"`, dbUser, dbPassword, dbHost, dbPort, dbService)
 	
-	fmt.Printf(connStr)
+	// fmt.Printf(connStr
 	database, err := sql.Open("godror", connStr)
 	if err != nil {
 		return fmt.Errorf("error al conectar a la base de datos: %v", err)
@@ -62,7 +62,6 @@ func (db *OracleDB) ExecuteStoredProcedure(call model.StoredProcedureCall) (map[
 	}
 	query := fmt.Sprintf("BEGIN %s(%s); END;", call.ProcedureName, strings.Join(placeholders, ", "))
 
-	fmt.Printf(query)
 	args := make([]interface{}, len(call.Inputs)+call.Outputs)
 	for i, v := range call.Inputs {
 		args[i] = v
